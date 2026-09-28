@@ -135,10 +135,15 @@ jobs:
       - name: Amalgamating sources
         run: |
           ./assets/amalgamate.py
-      - name: Compiling library
+      - name: Compiling static library
         run: |
           cd amalgamated-dist
-          gcc -shared -I. -fPIC -olibzydis.so Zydis.c
+          gcc -I. -c -o Zydis.o Zydis.c
+          ar rcs libzydis.a Zydis.o
+      - name: Compiling shared library
+        run: |
+          cd amalgamated-dist
+          gcc -DZYDIS_DYNAMIC_BUILD -shared -I. -fPIC -olibzydis.so Zydis.c
 
   fuzzing:
     runs-on: ubuntu-22.04
