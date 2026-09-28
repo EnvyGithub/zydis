@@ -109,7 +109,9 @@ of Zydis in your project, all you need to do is to copy these two files into you
 amalgamated builds can be found on our [release page](https://github.com/zyantific/zydis/releases)
 as `zydis-amalgamated.tar.gz`.
 
-These files are generated with the [`amalgamate.py`](./assets/amalgamate.py) script.
+These files are generated with the [`amalgamate.py`](./assets/amalgamate.py) script. The amalgamated
+distribution defaults to a static build. Define `ZYDIS_DYNAMIC_BUILD` when compiling the generated
+source as a shared library and when including the generated header from shared-library consumers.
 
 ### Package managers
 
